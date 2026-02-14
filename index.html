@@ -13,7 +13,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       font-family: 'IM Fell English', serif;
       color: #e0c3c3;
       overflow: hidden;
@@ -24,9 +23,19 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(180,30,60,0.06) 0%, transparent 60%);
+      background: radial-gradient(circle at center, rgba(180,30,60,0.05) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
     }
 
     #envelope {
@@ -37,14 +46,12 @@
       border-radius: 12px 12px 50% 50% / 18px 18px 12px 12px;
       position: relative;
       cursor: pointer;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.75), inset 0 0 35px rgba(100,0,20,0.25);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.75);
       transition: all 1s ease;
-      z-index: 10;
-      margin: auto;
     }
 
     #envelope.open {
-      transform: translateY(-100px);
+      transform: translateY(-80px);
     }
 
     #envelope::before {
@@ -56,7 +63,6 @@
       font-size: 38px;
       color: #8b0000;
       text-shadow: 0 0 12px #ff0044;
-      z-index: 11;
     }
 
     #letter {
@@ -70,43 +76,45 @@
       left: 20px;
       padding: 35px 25px;
       box-shadow: 0 35px 80px rgba(0,0,0,0.8);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1.1s ease;
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 1.2s ease;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: #d4b0b0;
-      z-index: 5;
     }
 
     #envelope.open #letter {
-      opacity: 1;
-      transform: translateY(-160px);
+      transform: translateY(-140px);
+    }
+
+    #letter.hide {
+      opacity: 0;
+      transform: translateY(-200px) scale(0.9);
+      pointer-events: none;
     }
 
     #letter h2 {
       font-family: 'Cinzel', serif;
-      color: #c71585;
+      color: #ff1493;
       font-size: 42px;
-      margin: 0 0 18px;
-      text-shadow: 0 0 18px #ff1493;
-      letter-spacing: 1.5px;
+      margin: 0 0 20px;
+      text-shadow: 0 0 15px #c71585;
     }
 
     #letter p {
       font-size: 19px;
-      line-height: 1.65;
+      line-height: 1.7;
       margin: 0;
-      max-width: 92%;
     }
 
     .btns {
-      margin-top: 28px;
+      margin-top: 30px;
       display: flex;
-      gap: 24px;
+      gap: 25px;
     }
 
     button {
@@ -119,7 +127,6 @@
       transition: all 0.4s;
       background: transparent;
       color: #e8c3c3;
-      box-shadow: 0 4px 12px rgba(139,0,0,0.35);
     }
 
     .si {
@@ -140,31 +147,31 @@
 
     .heart {
       position: absolute;
-      font-size: 24px;
+      font-size: 22px;
       pointer-events: none;
-      animation: fall 14s linear infinite;
-      z-index: 1;
+      animation: fall 15s linear infinite;
+      z-index: 0;
     }
 
     @keyframes fall {
-      0%   { transform: translateY(-20vh) rotate(0deg) scale(0.7); opacity: 0.6; }
-      100% { transform: translateY(120vh) rotate(720deg) scale(1.3); opacity: 0; }
+      0% { transform: translateY(-20vh) rotate(0deg) scale(0.7); opacity: 0.7; }
+      100% { transform: translateY(120vh) rotate(720deg) scale(1.2); opacity: 0; }
     }
 
     #final {
       position: absolute;
-      bottom: 12%;
+      bottom: 15%;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Great Vibes', cursive;
-      font-size: 52px;
+      font-size: 54px;
       color: #ff1493;
-      text-shadow: 0 0 25px #c71585, 0 0 50px #800020;
+      text-shadow: 0 0 25px #c71585;
       opacity: 0;
-      transition: all 1.6s ease;
+      transition: all 1.8s ease;
       white-space: nowrap;
+      z-index: 2;
       pointer-events: none;
-      z-index: 3;
     }
 
     #final.show {
@@ -174,25 +181,24 @@
 </head>
 <body>
 
-  <div id="envelope" onclick="abrir()">
-    <div id="letter">
-      <h2>Liz 🖤</h2>
-      <p>
-        En la penumbra de mis pensamientos<br>
-        solo tu luz carmesí permanece...<br><br>
-        Cada latido susurra tu nombre.<br><br>
-        ¿Aceptarías ser mi eterna compañera<br>
-        en esta noche sin fin?<br>
-        ¿Quieres ser mi San Valentín? 🖤🔥
-      </p>
-      <div class="btns">
-        <button class="si" onclick="si(event)">Sí, por siempre 🖤</button>
-        <button class="no" onclick="no(event)">Aún no... 🥀</button>
+  <div class="container">
+    <div id="envelope" onclick="abrir()">
+      <div id="letter">
+        <h2>Liz 🖤</h2>
+        <p>
+          Espero haberte sacado una sonrisa...<br><br>
+          Me encanta pasar tiempo contigo...<br><br>
+          ¿Quieres ser mi San Valentín? ❤️
+        </p>
+        <div class="btns">
+          <button class="si" onclick="si(event)">Sí, por siempre 🖤</button>
+          <button class="no" onclick="no(event)">Aún no... 🥀</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="final">Sabía que el destino nos uniría... 🖤💞</div>
+    <div id="final">Sabía que dirías que sí... 🖤💞</div>
+  </div>
 
   <audio id="music" loop>
     <source src="music.mp3" type="audio/mpeg">
@@ -205,35 +211,34 @@
     function abrir() {
       if (!opened) {
         document.getElementById("envelope").classList.add("open");
-        document.getElementById("music")?.play().catch(()=>{});
+        document.getElementById("music")?.play().catch(() => {});
         opened = true;
-        startHearts(500); // cada 500ms = menos lag
+        startHearts(600); // muy espaciado para evitar lag
       }
     }
 
     function si(e) {
       e.stopPropagation();
+      document.getElementById("letter").classList.add("hide");
       document.getElementById("final").classList.add("show");
-      startHearts(300); // un poco más intenso solo al decir sí
+      startHearts(400); // un poco más al confirmar
     }
 
     function no(e) {
       e.stopPropagation();
-      alert("El destino puede esperar... pero no eternamente 🖤🥀");
+      alert("Piénsalo otra vez... el destino espera 🖤🥀");
     }
 
     function startHearts(intervalMs) {
       if (heartInterval) clearInterval(heartInterval);
       heartInterval = setInterval(() => {
-        let heart = document.createElement("div");
+        const heart = document.createElement("div");
         heart.className = "heart";
-        heart.innerHTML = Math.random() > 0.6 ? "🖤" : "🥀";
+        heart.innerHTML = Math.random() > 0.5 ? "🖤" : "🥀";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.top = "-10vh";
-        heart.style.fontSize = (18 + Math.random() * 24) + "px";
-        heart.style.animationDuration = (10 + Math.random() * 8) + "s";
+        heart.style.animationDuration = (12 + Math.random() * 10) + "s";
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 18000);
+        setTimeout(() => heart.remove(), 22000);
       }, intervalMs);
     }
   </script>
