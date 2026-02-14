@@ -6,10 +6,10 @@
   <title>Para Liz 🖤💌</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #0f0015, #1a0005, #220008);
+      background: linear-gradient(135deg, #0f0015, #220008);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -19,168 +19,156 @@
       position: relative;
     }
 
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(180,30,60,0.05) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .container {
+    .scene {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
+      width: 380px;
+      height: 300px;
+      perspective: 1000px;
     }
 
     #envelope {
       width: 360px;
       height: 240px;
       background: linear-gradient(135deg, #2a0005, #400010);
-      border: 3px solid #4a0015;
-      border-radius: 12px 12px 50% 50% / 18px 18px 12px 12px;
-      position: relative;
+      border: 4px solid #4a0015;
+      border-radius: 20px 20px 100px 100px / 30px 30px 20px 20px;
+      position: absolute;
+      top: 30px;
+      left: 10px;
       cursor: pointer;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.75);
-      transition: all 1.2s ease;
-      overflow: hidden; /* importante para que la carta no se vea antes */
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      transition: transform 1.2s ease;
+      transform-style: preserve-3d;
+      z-index: 2;
     }
 
     #envelope.open {
-      transform: translateY(-90px);
+      transform: translateY(-100px) rotateX(15deg);
     }
 
     #envelope::before {
       content: "🖤";
       position: absolute;
-      top: 10px;
+      top: 15px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 40px;
-      color: #8b0000;
-      text-shadow: 0 0 12px #ff0044;
-      z-index: 2;
+      font-size: 48px;
+      color: #900020;
+      text-shadow: 0 0 15px #ff0044;
+      z-index: 3;
     }
 
     #letter {
       position: absolute;
       width: 320px;
-      min-height: 260px;
-      background: linear-gradient(to bottom, #0f0205, #140000);
-      border: 2px solid #5c0010;
-      border-radius: 10px;
-      top: 40px;               /* empieza más abajo, dentro del sobre */
+      min-height: 220px;
+      background: linear-gradient(#140000, #0a0000);
+      border: 2px solid #600018;
+      border-radius: 12px;
+      padding: 30px 25px;
+      top: 80px;
       left: 20px;
-      padding: 35px 25px;
-      box-shadow: 0 35px 80px rgba(0,0,0,0.8);
       opacity: 0;
-      transform: translateY(60px);  /* oculta visualmente al inicio */
-      transition: all 1.3s ease;
+      transform: translateY(100px) rotateX(-20deg);
+      transition: all 1.4s ease;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: #d4b0b0;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.9);
       z-index: 1;
+      pointer-events: none;
     }
 
     #envelope.open #letter {
       opacity: 1;
-      transform: translateY(-20px);  /* sube y sale del sobre */
+      transform: translateY(-60px) rotateX(0deg);
+      pointer-events: auto;
     }
 
     #letter.hide {
       opacity: 0;
-      transform: translateY(-180px) scale(0.85);
-      transition: all 1.2s ease;
+      transform: translateY(-200px) scale(0.8) rotateX(20deg);
+      transition: all 1.3s ease;
       pointer-events: none;
     }
 
     #letter h2 {
       font-family: 'Cinzel', serif;
       color: #ff1493;
-      font-size: 42px;
-      margin: 0 0 20px;
-      text-shadow: 0 0 15px #c71585;
+      font-size: 40px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 12px #c71585;
     }
 
     #letter p {
-      font-size: 19px;
-      line-height: 1.7;
-      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     .btns {
-      margin-top: 30px;
       display: flex;
-      gap: 25px;
+      gap: 30px;
     }
 
     button {
-      padding: 12px 32px;
+      padding: 10px 28px;
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
       border: 2px solid #800020;
       border-radius: 8px;
-      font-family: 'Cinzel', serif;
-      font-size: 17px;
-      cursor: pointer;
-      transition: all 0.4s;
       background: transparent;
-      color: #e8c3c3;
+      color: #ffd;
+      cursor: pointer;
+      transition: 0.4s;
     }
 
     .si {
-      background: linear-gradient(135deg, #800020, #a1122a);
+      background: linear-gradient(#a1122a, #800020);
       border-color: #ff1493;
       color: white;
     }
 
-    .si:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(255,20,147,0.5); }
+    .si:hover { transform: scale(1.1); box-shadow: 0 0 20px #ff1493aa; }
 
-    .no:hover { background: #22000855; color: #ff69b4; }
+    .no:hover { background: #300010; color: #ff69b4; }
 
     .heart {
       position: absolute;
-      font-size: 22px;
-      pointer-events: none;
-      animation: fall 15s linear infinite;
+      font-size: 20px;
+      animation: fall 18s linear infinite;
       z-index: 0;
+      pointer-events: none;
     }
 
     @keyframes fall {
-      0% { transform: translateY(-20vh) rotate(0deg) scale(0.7); opacity: 0.7; }
-      100% { transform: translateY(120vh) rotate(720deg) scale(1.2); opacity: 0; }
+      0% { transform: translateY(-30vh) rotate(0deg); opacity: 0.6; }
+      100% { transform: translateY(130vh) rotate(1080deg); opacity: 0; }
     }
 
     #final {
       position: absolute;
-      bottom: 15%;
+      bottom: 10%;
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Great Vibes', cursive;
-      font-size: 54px;
+      font-size: 60px;
       color: #ff1493;
-      text-shadow: 0 0 25px #c71585;
+      text-shadow: 0 0 30px #c71585;
       opacity: 0;
-      transition: all 1.8s ease 0.4s;
+      transition: opacity 2s ease 0.5s;
       white-space: nowrap;
       z-index: 3;
-      pointer-events: none;
     }
 
-    #final.show {
-      opacity: 1;
-    }
+    #final.show { opacity: 1; }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="scene">
     <div id="envelope" onclick="abrir()">
       <div id="letter">
         <h2>Liz 🖤</h2>
@@ -195,50 +183,43 @@
         </div>
       </div>
     </div>
-
-    <div id="final">Sabía que dirías que sí... 🖤💞</div>
   </div>
 
-  <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+  <div id="final">Sabía que dirías que sí... 🖤💞</div>
 
   <script>
     let opened = false;
-    let heartInterval = null;
 
     function abrir() {
       if (!opened) {
-        document.getElementById("envelope").classList.add("open");
-        document.getElementById("music")?.play().catch(() => {});
+        document.getElementById('envelope').classList.add('open');
         opened = true;
-        startHearts(600);
+        startHearts(800); // muy lento para no lag
       }
     }
 
     function si(e) {
       e.stopPropagation();
-      document.getElementById("letter").classList.add("hide");
-      document.getElementById("final").classList.add("show");
-      startHearts(400);
+      document.getElementById('letter').classList.add('hide');
+      document.getElementById('final').classList.add('show');
+      startHearts(500);
     }
 
     function no(e) {
       e.stopPropagation();
-      alert("Piénsalo otra vez... el destino espera 🖤🥀");
+      alert("El corazón puede esperar un poco más... 🖤🥀");
     }
 
-    function startHearts(intervalMs) {
-      if (heartInterval) clearInterval(heartInterval);
-      heartInterval = setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = Math.random() > 0.5 ? "🖤" : "🥀";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (12 + Math.random() * 10) + "s";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 22000);
-      }, intervalMs);
+    function startHearts(delay) {
+      setInterval(() => {
+        let h = document.createElement('div');
+        h.className = 'heart';
+        h.textContent = Math.random() > 0.4 ? '🖤' : '🥀';
+        h.style.left = Math.random()*100 + 'vw';
+        h.style.animationDuration = (12 + Math.random()*10) + 's';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 30000);
+      }, delay);
     }
   </script>
 </body>
