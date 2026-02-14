@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Liz 🖤💌</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
@@ -19,169 +20,155 @@
       position: relative;
     }
 
-    /* Fondo sutil de textura */
     body::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(180,30,60,0.08) 0%, transparent 50%);
+      background: radial-gradient(circle at 30% 20%, rgba(180,30,60,0.06) 0%, transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* SOBRE con toque gótico */
     #envelope {
-      width: 380px;
+      width: 360px;
       height: 240px;
       background: linear-gradient(135deg, #2a0005, #400010);
       border: 3px solid #4a0015;
-      border-radius: 12px 12px 60% 60% / 20px 20px 12px 12px;
+      border-radius: 12px 12px 50% 50% / 18px 18px 12px 12px;
       position: relative;
       cursor: pointer;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.7), inset 0 0 40px rgba(100,0,20,0.3);
-      transition: all 0.9s ease;
-      z-index: 2;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.75), inset 0 0 35px rgba(100,0,20,0.25);
+      transition: all 1s ease;
+      z-index: 10;
+      margin: auto;
     }
 
     #envelope.open {
-      transform: translateY(-140px) rotateX(20deg);
+      transform: translateY(-100px);
     }
 
-    /* Sello de cera */
     #envelope::before {
       content: "🖤";
       position: absolute;
-      top: 10px;
+      top: 8px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 42px;
+      font-size: 38px;
       color: #8b0000;
-      text-shadow: 0 0 15px #ff0044;
-      z-index: 3;
+      text-shadow: 0 0 12px #ff0044;
+      z-index: 11;
     }
 
-    /* CARTA */
     #letter {
       position: absolute;
-      width: 340px;
-      height: 280px;
-      background: linear-gradient(to bottom, #0f0205, #1a0000);
+      width: 320px;
+      min-height: 260px;
+      background: linear-gradient(to bottom, #0f0205, #140000);
       border: 2px solid #5c0010;
       border-radius: 10px;
-      top: -30px;
+      top: -20px;
       left: 20px;
-      padding: 40px 30px;
-      box-shadow: 0 40px 90px rgba(0,0,0,0.8), inset 0 0 30px rgba(80,0,20,0.4);
+      padding: 35px 25px;
+      box-shadow: 0 35px 80px rgba(0,0,0,0.8);
       opacity: 0;
-      transform: translateY(60px) rotateX(-15deg);
-      transition: all 1s ease;
+      transform: translateY(30px);
+      transition: all 1.1s ease;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: #d4b0b0;
-      z-index: 1;
+      z-index: 5;
     }
 
     #envelope.open #letter {
       opacity: 1;
-      transform: translateY(-220px) rotateX(0deg);
+      transform: translateY(-160px);
     }
 
     #letter h2 {
       font-family: 'Cinzel', serif;
       color: #c71585;
-      font-size: 48px;
-      margin: 0 0 20px;
-      text-shadow: 0 0 20px #ff1493;
-      letter-spacing: 2px;
+      font-size: 42px;
+      margin: 0 0 18px;
+      text-shadow: 0 0 18px #ff1493;
+      letter-spacing: 1.5px;
     }
 
     #letter p {
-      font-size: 20px;
-      line-height: 1.7;
+      font-size: 19px;
+      line-height: 1.65;
       margin: 0;
-      max-width: 90%;
+      max-width: 92%;
     }
 
-    /* Botones góticos */
     .btns {
-      margin-top: 30px;
+      margin-top: 28px;
       display: flex;
-      gap: 20px;
+      gap: 24px;
     }
 
     button {
-      padding: 12px 30px;
+      padding: 12px 32px;
       border: 2px solid #800020;
       border-radius: 8px;
       font-family: 'Cinzel', serif;
-      font-size: 18px;
+      font-size: 17px;
       cursor: pointer;
       transition: all 0.4s;
       background: transparent;
       color: #e8c3c3;
-      box-shadow: 0 5px 15px rgba(139,0,0,0.4);
+      box-shadow: 0 4px 12px rgba(139,0,0,0.35);
     }
 
     .si {
-      background: linear-gradient(135deg, #800020, #b22222);
+      background: linear-gradient(135deg, #800020, #a1122a);
       border-color: #ff1493;
       color: white;
     }
 
     .si:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 30px rgba(255,20,147,0.6);
-    }
-
-    .no {
-      border-color: #4a0015;
+      transform: scale(1.06);
+      box-shadow: 0 8px 25px rgba(255,20,147,0.5);
     }
 
     .no:hover {
-      background: #220008;
+      background: #22000855;
       color: #ff69b4;
     }
 
-    /* Corazones góticos cayendo */
     .heart {
       position: absolute;
-      color: #8b0000;
-      font-size: 28px;
-      animation: fall 12s linear infinite;
-      text-shadow: 0 0 10px #ff0044;
+      font-size: 24px;
       pointer-events: none;
-      z-index: 0;
+      animation: fall 14s linear infinite;
+      z-index: 1;
     }
-
-    .heart:nth-child(odd) { color: #4b0000; }
 
     @keyframes fall {
-      0%   { transform: translateY(-15vh) rotate(0deg) scale(0.6); opacity: 0.7; }
-      50%  { opacity: 1; }
-      100% { transform: translateY(120vh) rotate(360deg) scale(1.4); opacity: 0; }
+      0%   { transform: translateY(-20vh) rotate(0deg) scale(0.7); opacity: 0.6; }
+      100% { transform: translateY(120vh) rotate(720deg) scale(1.3); opacity: 0; }
     }
 
-    /* Mensaje final */
     #final {
-      position: fixed;
-      top: 45%;
+      position: absolute;
+      bottom: 12%;
+      left: 50%;
+      transform: translateX(-50%);
       font-family: 'Great Vibes', cursive;
-      font-size: 68px;
+      font-size: 52px;
       color: #ff1493;
-      text-shadow: 0 0 30px #c71585, 0 0 60px #800020;
+      text-shadow: 0 0 25px #c71585, 0 0 50px #800020;
       opacity: 0;
-      transition: opacity 1.8s ease, transform 1.8s ease;
-      transform: scale(0.8);
-      z-index: 3;
+      transition: all 1.6s ease;
+      white-space: nowrap;
       pointer-events: none;
+      z-index: 3;
     }
 
     #final.show {
       opacity: 1;
-      transform: scale(1);
     }
   </style>
 </head>
@@ -209,25 +196,25 @@
 
   <audio id="music" loop>
     <source src="music.mp3" type="audio/mpeg">
-    <!-- Si no tienes música, puedes quitar el audio o poner un link a un dark romantic piano -->
   </audio>
 
   <script>
     let opened = false;
+    let heartInterval = null;
 
     function abrir() {
       if (!opened) {
         document.getElementById("envelope").classList.add("open");
-        document.getElementById("music")?.play().catch(() => {});
+        document.getElementById("music")?.play().catch(()=>{});
         opened = true;
-        lluviaCorazones();
+        startHearts(500); // cada 500ms = menos lag
       }
     }
 
     function si(e) {
       e.stopPropagation();
       document.getElementById("final").classList.add("show");
-      lluviaCorazones(80); // más intensos
+      startHearts(300); // un poco más intenso solo al decir sí
     }
 
     function no(e) {
@@ -235,17 +222,19 @@
       alert("El destino puede esperar... pero no eternamente 🖤🥀");
     }
 
-    function lluviaCorazones(intensidad = 120) {
-      setInterval(() => {
+    function startHearts(intervalMs) {
+      if (heartInterval) clearInterval(heartInterval);
+      heartInterval = setInterval(() => {
         let heart = document.createElement("div");
-        heart.innerHTML = Math.random() > 0.5 ? "🖤" : "🥀";
         heart.className = "heart";
+        heart.innerHTML = Math.random() > 0.6 ? "🖤" : "🥀";
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (20 + Math.random() * 40) + "px";
-        heart.style.animationDuration = (8 + Math.random() * 10) + "s";
+        heart.style.top = "-10vh";
+        heart.style.fontSize = (18 + Math.random() * 24) + "px";
+        heart.style.animationDuration = (10 + Math.random() * 8) + "s";
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 15000);
-      }, intensidad);
+        setTimeout(() => heart.remove(), 18000);
+      }, intervalMs);
     }
   </script>
 </body>
