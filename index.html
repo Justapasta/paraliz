@@ -30,11 +30,11 @@
 
     .container {
       position: relative;
-      width: 100%;
-      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
+      height: 100%;
       z-index: 1;
     }
 
@@ -47,22 +47,24 @@
       position: relative;
       cursor: pointer;
       box-shadow: 0 25px 70px rgba(0,0,0,0.75);
-      transition: all 1s ease;
+      transition: all 1.2s ease;
+      overflow: hidden; /* importante para que la carta no se vea antes */
     }
 
     #envelope.open {
-      transform: translateY(-80px);
+      transform: translateY(-90px);
     }
 
     #envelope::before {
       content: "🖤";
       position: absolute;
-      top: 8px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 38px;
+      font-size: 40px;
       color: #8b0000;
       text-shadow: 0 0 12px #ff0044;
+      z-index: 2;
     }
 
     #letter {
@@ -72,28 +74,31 @@
       background: linear-gradient(to bottom, #0f0205, #140000);
       border: 2px solid #5c0010;
       border-radius: 10px;
-      top: -20px;
+      top: 40px;               /* empieza más abajo, dentro del sobre */
       left: 20px;
       padding: 35px 25px;
       box-shadow: 0 35px 80px rgba(0,0,0,0.8);
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 1.2s ease;
+      opacity: 0;
+      transform: translateY(60px);  /* oculta visualmente al inicio */
+      transition: all 1.3s ease;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       color: #d4b0b0;
+      z-index: 1;
     }
 
     #envelope.open #letter {
-      transform: translateY(-140px);
+      opacity: 1;
+      transform: translateY(-20px);  /* sube y sale del sobre */
     }
 
     #letter.hide {
       opacity: 0;
-      transform: translateY(-200px) scale(0.9);
+      transform: translateY(-180px) scale(0.85);
+      transition: all 1.2s ease;
       pointer-events: none;
     }
 
@@ -135,15 +140,9 @@
       color: white;
     }
 
-    .si:hover {
-      transform: scale(1.06);
-      box-shadow: 0 8px 25px rgba(255,20,147,0.5);
-    }
+    .si:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(255,20,147,0.5); }
 
-    .no:hover {
-      background: #22000855;
-      color: #ff69b4;
-    }
+    .no:hover { background: #22000855; color: #ff69b4; }
 
     .heart {
       position: absolute;
@@ -168,9 +167,9 @@
       color: #ff1493;
       text-shadow: 0 0 25px #c71585;
       opacity: 0;
-      transition: all 1.8s ease;
+      transition: all 1.8s ease 0.4s;
       white-space: nowrap;
-      z-index: 2;
+      z-index: 3;
       pointer-events: none;
     }
 
@@ -213,7 +212,7 @@
         document.getElementById("envelope").classList.add("open");
         document.getElementById("music")?.play().catch(() => {});
         opened = true;
-        startHearts(600); // muy espaciado para evitar lag
+        startHearts(600);
       }
     }
 
@@ -221,7 +220,7 @@
       e.stopPropagation();
       document.getElementById("letter").classList.add("hide");
       document.getElementById("final").classList.add("show");
-      startHearts(400); // un poco más al confirmar
+      startHearts(400);
     }
 
     function no(e) {
