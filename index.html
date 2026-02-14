@@ -23,7 +23,6 @@
       position: relative;
       width: 380px;
       height: 300px;
-      perspective: 1000px;
     }
 
     #envelope {
@@ -38,7 +37,6 @@
       cursor: pointer;
       box-shadow: 0 20px 60px rgba(0,0,0,0.8);
       transition: transform 1.2s ease;
-      transform-style: preserve-3d;
       z-index: 2;
     }
 
@@ -187,14 +185,28 @@
 
   <div id="final">Sabía que dirías que sí... 🖤💞</div>
 
+  <audio id="music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
   <script>
     let opened = false;
+    const audio = document.getElementById('music');
 
     function abrir() {
       if (!opened) {
         document.getElementById('envelope').classList.add('open');
         opened = true;
-        startHearts(800); // muy lento para no lag
+        startHearts(800);
+
+        // Reproduce música al clic (desbloquea autoplay)
+        audio.play().then(() => {
+          console.log('Música reproduciéndose 🎶');
+        }).catch(err => {
+          console.error('Error al reproducir música:', err);
+          // Opcional: alert o fallback
+        });
       }
     }
 
@@ -221,6 +233,11 @@
         setTimeout(() => h.remove(), 30000);
       }, delay);
     }
+
+    // Opcional: Intenta muted autoplay al load (por si acaso)
+    audio.muted = true;
+    audio.play().catch(() => {});
+    audio.muted = false; // Quita mute después, pero solo después de interacción real
   </script>
 </body>
 </html>
